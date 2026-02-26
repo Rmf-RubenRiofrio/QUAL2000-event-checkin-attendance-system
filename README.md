@@ -19,9 +19,9 @@ Three main layers were implemented (aligned with previous lab structure):
 - `eventRepo.js`: SQL data access for events, attendees, and check-ins
 - `eventService.js`: input validation and business rules
 
-Optional module:
+Local manual test:
 
-- `cli.js`: simple command-line interface to run the application manually
+- `cli.js`: simple command-line interface to run the application manually in the local environment before moving to prod
 
 The expected execution path is:
 
