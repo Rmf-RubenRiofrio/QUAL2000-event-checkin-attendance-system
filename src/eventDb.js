@@ -1,7 +1,7 @@
 const sqlite3 = require("sqlite3");
 
-const createDb = () => {
-  return new sqlite3.Database(":memory:");
+const createDb = (dbFile = ":memory:") => {
+  return new sqlite3.Database(dbFile);
 };
 
 const run = (db, sql, params = []) => {
@@ -34,7 +34,7 @@ const all = (db, sql, params = []) => {
 const initSchema = async (db) => {
   await run(
     db,
-    `CREATE TABLE events (
+    `CREATE TABLE IF NOT EXISTS events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_code TEXT NOT NULL UNIQUE,
       name TEXT NOT NULL,
@@ -45,7 +45,7 @@ const initSchema = async (db) => {
   
   await run(
     db,
-    `CREATE TABLE attendees (
+    `CREATE TABLE IF NOT EXISTS attendees (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_id INTEGER NOT NULL,
       email TEXT NOT NULL,
@@ -59,7 +59,7 @@ const initSchema = async (db) => {
   
   await run(
     db,
-    `CREATE TABLE checkins (
+    `CREATE TABLE IF NOT EXISTS checkins (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_id INTEGER NOT NULL,
       attendee_id INTEGER NOT NULL,

@@ -9,7 +9,7 @@ const {
 const main = async () => {
   const [cmd, ...args] = process.argv.slice(2);
 
-  const db = createDb();
+  const db = createDb("events.db");
   await initSchema(db);
 
   try {
